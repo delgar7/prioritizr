@@ -15,6 +15,9 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [nextId, setNextId] = useState(1);
 
+  // local storage for todos -- to prevent state reset on page reload
+
+  // Handle functions [START]
   const handleStatusChange = (id: number, newStatus: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
@@ -30,6 +33,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
       )
     );
   };
+  // Handle functions [END]
 
   return (
     <div className="flex flex-col gap-y-5 pt-5">
@@ -37,7 +41,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
         const handleAddTodo = () => {
           const newTodo = {
             id: nextId,
-            title: `Todo ${nextId}`,
+            title: "",
             status: category,
           };
           setTodos((prevTodos) => [...prevTodos, newTodo]);

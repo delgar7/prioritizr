@@ -15,10 +15,10 @@ function SingleTodo({
   onStatusChange,
   onTitleChange,
 }: ISingleTodoProps) {
-  // State [START]
+  // Hooks [START]
   const [editTitle, setEditTitle] = useState(title);
   const focusRef = useRef<HTMLSpanElement>(null);
-  // State [END]
+  // Hooks [END]
 
   useEffect(() => {
     if (focusRef.current) {
@@ -52,7 +52,7 @@ function SingleTodo({
       </select>
       <span
         ref={focusRef}
-        className="todo-title font-medium cursor-pointer dark:text-gray-400"
+        className="todo-title font-medium cursor-pointer dark:text-gray-400 px-1"
         contentEditable="true"
         onBlur={handleTitleChange}
       >
