@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SingleTodo from "./SingleTodos";
 
 interface TodoCategoryRowProps {
@@ -12,10 +12,17 @@ interface ITodo {
 }
 
 function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
-  const [todos, setTodos] = useState<ITodo[]>([]);
+  // LocalStorage getItem for Todos
+  const storedTodos = localStorage.getItem("todos");
+  const initialTodos = storedTodos ? JSON.parse(storedTodos) : [];
+
+  const [todos, setTodos] = useState<ITodo[]>(initialTodos);
   const [nextId, setNextId] = useState(1);
 
-  // local storage for todos -- to prevent state reset on page reload
+  // LocalStorage setItem for Todos
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   // Handle functions [START]
   const handleStatusChange = (id: number, newStatus: string) => {
