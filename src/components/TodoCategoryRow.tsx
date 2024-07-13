@@ -12,14 +12,20 @@ interface ITodo {
 }
 
 function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
-  // LocalStorage getItem for Todos
+  // Fetching the data from localStorage, using getItem
   const storedTodos = localStorage.getItem("todos");
   const initialTodos = storedTodos ? JSON.parse(storedTodos) : [];
 
-  const [todos, setTodos] = useState<ITodo[]>(initialTodos);
-  const [nextId, setNextId] = useState(1);
+  // Calculate initial nextId based on the existing todos, to prevent duplicate IDs
+  const initialNextId =
+    initialTodos.length > 0
+      ? Math.max(...initialTodos.map((todo: ITodo) => todo.id)) + 1
+      : 1;
 
-  // LocalStorage setItem for Todos
+  const [todos, setTodos] = useState<ITodo[]>(initialTodos);
+  const [nextId, setNextId] = useState(initialNextId);
+
+  // Saving the data of the Todos, using setItem (localStorage)
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
