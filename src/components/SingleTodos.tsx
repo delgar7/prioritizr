@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import useFocus from "../hooks/useFocus";
 
 interface ISingleTodoProps {
   index: number;
@@ -17,14 +18,7 @@ function SingleTodo({
 }: ISingleTodoProps) {
   // Hooks [START]
   const [editTitle, setEditTitle] = useState(title);
-  const focusRef = useRef<HTMLSpanElement>(null);
-  // Hooks [END]
-
-  useEffect(() => {
-    if (focusRef.current) {
-      focusRef.current.focus();
-    }
-  }, []);
+  const focusRef = useFocus();
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLSpanElement>) => {
     // 💡 [TODO] Add validation to prevent/warn empty strings within the editable fields
@@ -38,9 +32,9 @@ function SingleTodo({
   };
 
   return (
-    <li className="pt-3 relative">
+    <li className="relative pt-3">
       <select
-        className="font-bold h-8 w-40 rounded border-2 text-gray-600 hover:border-gray-400 focus:outline-none mr-4"
+        className="w-40 h-8 mr-4 font-bold text-gray-600 border-2 rounded hover:border-gray-400 focus:outline-none"
         value={status}
         onChange={handleStatusChange}
       >
@@ -52,7 +46,7 @@ function SingleTodo({
       </select>
       <span
         ref={focusRef}
-        className="todo-title font-medium cursor-pointer dark:text-gray-400 px-1"
+        className="px-1 font-medium cursor-pointer todo-title dark:text-gray-400"
         contentEditable="true"
         onBlur={handleTitleChange}
       >

@@ -14,7 +14,6 @@ function App() {
     >
       <Header />
       <TodoCategoryRow categories={categories} />
-
     </div>
   );
 }

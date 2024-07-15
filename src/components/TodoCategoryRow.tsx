@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SingleTodo from "./SingleTodos";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 interface TodoCategoryRowProps {
   categories: string[];
@@ -48,8 +49,11 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
   };
   // Handle functions [END]
 
+  // Animations reference - https://auto-animate.formkit.com/
+  const [listRef] = useAutoAnimate();
+
   return (
-    <div className="flex flex-col gap-y-5 pt-5">
+    <div className="flex flex-col pt-5 gap-y-5">
       {categories.map((category) => {
         const handleAddTodo = () => {
           const newTodo = {
@@ -72,7 +76,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             >
               +
             </button>
-            <ul>
+            <ul ref={listRef}>
               {todos
                 .filter((todo) => todo.status === category)
                 .map((todo) => (
