@@ -16,7 +16,7 @@ function SingleTodo({
   onStatusChange,
   onTitleChange,
 }: ISingleTodoProps) {
-  // Hooks [START]
+  // Hooks
   const [editTitle, setEditTitle] = useState(title);
   const focusRef = useFocus();
 

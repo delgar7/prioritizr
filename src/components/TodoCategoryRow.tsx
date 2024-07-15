@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import SingleTodo from "./SingleTodos";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-
+import useAutoAnimateList from "../hooks/useAutoAnimateList";
 interface TodoCategoryRowProps {
   categories: string[];
 }
@@ -23,8 +22,10 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
       ? Math.max(...initialTodos.map((todo: ITodo) => todo.id)) + 1
       : 1;
 
+  // Hooks
   const [todos, setTodos] = useState<ITodo[]>(initialTodos);
   const [nextId, setNextId] = useState(initialNextId);
+  const listRef = useAutoAnimateList();
 
   // Saving the data of the Todos, using setItem (localStorage)
   useEffect(() => {
@@ -48,9 +49,6 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
     );
   };
   // Handle functions [END]
-
-  // Animations reference - https://auto-animate.formkit.com/
-  const [listRef] = useAutoAnimate();
 
   return (
     <div className="flex flex-col pt-5 gap-y-5">
