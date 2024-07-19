@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SingleTodo from "./SingleTodos";
 import useAutoAnimateList from "../hooks/useAutoAnimateList";
+
 interface TodoCategoryRowProps {
   categories: string[];
 }
@@ -74,6 +75,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             >
               +
             </button>
+
             <ul ref={listRef}>
               {todos
                 .filter((todo) => todo.status === category)

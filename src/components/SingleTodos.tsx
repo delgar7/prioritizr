@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useFocus from "../hooks/useFocus";
+import TodoPrio from "./TodoPrio";
 
 interface ISingleTodoProps {
   index: number;
@@ -32,7 +33,7 @@ function SingleTodo({
   };
 
   return (
-    <li className="relative pt-3">
+    <li className="relative pt-3 flex">
       <select
         className="w-40 h-8 mr-4 font-bold text-gray-600 border-2 rounded hover:border-gray-400 focus:outline-none"
         value={status}
@@ -44,6 +45,7 @@ function SingleTodo({
         <option value="Done">☑️ Done</option>
         <option value="Canceled">🗑 Canceled</option>
       </select>
+      <TodoPrio />
       <span
         ref={focusRef}
         className="px-1 font-medium cursor-pointer todo-title dark:text-gray-400"
