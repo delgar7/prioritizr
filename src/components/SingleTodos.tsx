@@ -6,16 +6,20 @@ interface ISingleTodoProps {
   index: number;
   title: string;
   status: string;
+  priority: string;
   onStatusChange: (index: number, newStatus: string) => void;
   onTitleChange: (index: number, newTitle: string) => void;
+  onPriorityChange: (index: number, newPrio: string) => void;
 }
 
 function SingleTodo({
   index,
   title,
   status,
+  priority,
   onStatusChange,
   onTitleChange,
+  onPriorityChange,
 }: ISingleTodoProps) {
   // Hooks
   const [editTitle, setEditTitle] = useState(title);
@@ -32,6 +36,12 @@ function SingleTodo({
     onStatusChange(index, event.target.value);
   };
 
+  const handlePriorityChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    onPriorityChange(index, event.target.value);
+  };
+
   return (
     <li className="relative pt-3 flex">
       <select
@@ -45,7 +55,7 @@ function SingleTodo({
         <option value="Done">☑️ Done</option>
         <option value="Canceled">🗑 Canceled</option>
       </select>
-      <TodoPrio />
+      <TodoPrio onChange={handlePriorityChange} value={priority} />
       <span
         ref={focusRef}
         className="px-1 font-medium cursor-pointer todo-title dark:text-gray-400"

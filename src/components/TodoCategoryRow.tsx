@@ -10,6 +10,7 @@ interface ITodo {
   id: number;
   title: string;
   status: string;
+  priority: string;
 }
 
 function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
@@ -49,6 +50,14 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
       )
     );
   };
+
+  const handlePriorityChange = (id: number, newPriority: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, priority: newPriority } : todo
+      )
+    );
+  };
   // Handle functions [END]
 
   return (
@@ -59,6 +68,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             id: nextId,
             title: "",
             status: category,
+            priority: "none",
           };
           setTodos((prevTodos) => [...prevTodos, newTodo]);
           setNextId((prevId) => prevId + 1);
@@ -85,8 +95,10 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
                     index={todo.id}
                     title={todo.title}
                     status={todo.status}
+                    priority={todo.priority}
                     onStatusChange={handleStatusChange}
                     onTitleChange={handleTitleChange}
+                    onPriorityChange={handlePriorityChange}
                   />
                 ))}
             </ul>
