@@ -13,6 +13,8 @@ interface ITodo {
   priority: string;
 }
 
+const priorityOrder = ["urgent", "high", "medium", "low", "none"];
+
 function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
   // Fetching the data from localStorage, using getItem
   const storedTodos = localStorage.getItem("todos");
@@ -58,6 +60,14 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
       )
     );
   };
+
+  const sortTodosByPriority = (todos: ITodo[]) => {
+    return todos.sort((a, b) => {
+      return (
+        priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority)
+      );
+    });
+  };
   // Handle functions [END]
 
   return (
@@ -87,20 +97,20 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             </button>
 
             <ul ref={listRef}>
-              {todos
-                .filter((todo) => todo.status === category)
-                .map((todo) => (
-                  <SingleTodo
-                    key={todo.id}
-                    index={todo.id}
-                    title={todo.title}
-                    status={todo.status}
-                    priority={todo.priority}
-                    onStatusChange={handleStatusChange}
-                    onTitleChange={handleTitleChange}
-                    onPriorityChange={handlePriorityChange}
-                  />
-                ))}
+              {sortTodosByPriority(
+                todos.filter((todo) => todo.status === category)
+              ).map((todo) => (
+                <SingleTodo
+                  key={todo.id}
+                  index={todo.id}
+                  title={todo.title}
+                  status={todo.status}
+                  priority={todo.priority}
+                  onStatusChange={handleStatusChange}
+                  onTitleChange={handleTitleChange}
+                  onPriorityChange={handlePriorityChange}
+                />
+              ))}
             </ul>
           </div>
         );
