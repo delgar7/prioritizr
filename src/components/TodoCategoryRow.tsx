@@ -11,6 +11,7 @@ interface ITodo {
   title: string;
   status: string;
   priority: string;
+  user: string;
 }
 
 const priorityOrder = ["urgent", "high", "medium", "low", "none"];
@@ -61,6 +62,15 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
     );
   };
 
+  const handleUserChange = (id: number, newUser: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, user: newUser } : todo
+      )
+    );
+  };
+  // Handle functions [END]
+
   const sortTodosByPriority = (todos: ITodo[]) => {
     return todos.sort((a, b) => {
       return (
@@ -68,7 +78,6 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
       );
     });
   };
-  // Handle functions [END]
 
   return (
     <div className="flex flex-col pt-5 gap-y-5">
@@ -79,6 +88,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             title: "",
             status: category,
             priority: "none",
+            user: "none",
           };
           setTodos((prevTodos) => [...prevTodos, newTodo]);
           setNextId((prevId) => prevId + 1);
@@ -106,9 +116,11 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
                   title={todo.title}
                   status={todo.status}
                   priority={todo.priority}
+                  user={todo.user}
                   onStatusChange={handleStatusChange}
                   onTitleChange={handleTitleChange}
                   onPriorityChange={handlePriorityChange}
+                  onUserChange={handleUserChange}
                 />
               ))}
             </ul>

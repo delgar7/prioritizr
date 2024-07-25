@@ -8,9 +8,11 @@ interface ISingleTodoProps {
   title: string;
   status: string;
   priority: string;
+  user: string;
   onStatusChange: (index: number, newStatus: string) => void;
   onTitleChange: (index: number, newTitle: string) => void;
   onPriorityChange: (index: number, newPrio: string) => void;
+  onUserChange: (index: number, newUser: string) => void;
 }
 
 function SingleTodo({
@@ -18,9 +20,11 @@ function SingleTodo({
   title,
   status,
   priority,
+  user,
   onStatusChange,
   onTitleChange,
   onPriorityChange,
+  onUserChange,
 }: ISingleTodoProps) {
   // Hooks
   const [editTitle, setEditTitle] = useState(title);
@@ -41,6 +45,10 @@ function SingleTodo({
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     onPriorityChange(index, event.target.value);
+  };
+
+  const handleUserChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onUserChange(index, event.target.value);
   };
 
   return (
@@ -67,7 +75,7 @@ function SingleTodo({
         {editTitle}
       </span>
       <div className="ml-auto">
-        <TodoUser />
+        <TodoUser onChange={handleUserChange} value={user} />
       </div>
     </li>
   );
