@@ -2,6 +2,7 @@ import { useState } from "react";
 import useFocus from "../hooks/useFocus";
 import TodoPrio from "./TodoPrio";
 import TodoUser from "./TodoUser";
+import TodoCategory from "./TodoCategory";
 
 interface ISingleTodoProps {
   index: number;
@@ -53,17 +54,7 @@ function SingleTodo({
 
   return (
     <li className="relative flex pt-3">
-      <select
-        className="w-40 h-8 mr-4 font-bold text-gray-600 border-2 rounded hover:border-gray-400 focus:outline-none"
-        value={status}
-        onChange={handleStatusChange}
-      >
-        <option value="Todo">📥 Todo</option>
-        <option value="In Progress">🏃 In Progress</option>
-        <option value="In Review">🙇 In Review</option>
-        <option value="Done">☑️ Done</option>
-        <option value="Canceled">🗑 Canceled</option>
-      </select>
+      <TodoCategory onChange={handleStatusChange} value={status} />
       <TodoPrio onChange={handlePriorityChange} value={priority} />
 
       <span

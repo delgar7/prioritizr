@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import TodoCategoryRow from "./components/TodoCategoryRow";
 import { useTheme } from "./context/DarkModeContext";
+import Footer from "./components/Footer";
 
 function App() {
   const { darkMode } = useTheme();
@@ -14,6 +15,7 @@ function App() {
     >
       <Header />
       <TodoCategoryRow categories={categories} />
+      <Footer />
     </div>
   );
 }
