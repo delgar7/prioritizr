@@ -1,20 +1,24 @@
+import { MenuItem } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
+import { SelectChangeEvent } from "@mui/material/Select";
+
 interface TodoCategoryProps {
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
 }
 function TodoCategory({ value, onChange }: TodoCategoryProps) {
   return (
-    <select
-      className="w-40 h-8 mr-4 font-bold text-gray-600 border-2 rounded hover:border-gray-400 focus:outline-none"
-      value={value}
-      onChange={onChange}
-    >
-      <option value="Todo">📥 Todo</option>
-      <option value="In Progress">🏃 In Progress</option>
-      <option value="In Review">🙇 In Review</option>
-      <option value="Done">☑️ Done</option>
-      <option value="Canceled">🗑 Canceled</option>
-    </select>
+    <FormControl sx={{ m: 0, minWidth: 120 }} size="small">
+      <Select value={value} onChange={onChange}>
+        <MenuItem value="Todo">📥 Todo</MenuItem>
+        <MenuItem value="In Progress">🏃 In Progress</MenuItem>
+        <MenuItem value="In Review">🙇 In Review</MenuItem>
+        <MenuItem value="Done">☑️ Done</MenuItem>
+        <MenuItem value="Canceled">🗑 Canceled</MenuItem>
+      </Select>
+    </FormControl>
   );
 }
 

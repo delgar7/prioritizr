@@ -1,23 +1,43 @@
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+
 interface ITodoUser {
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  value: string[];
+  onChange: (event: SelectChangeEvent<string[]>) => void;
 }
+
+const names = ["None", "Emma", "Michael", "Olivea", "Omar"];
 
 function TodoUser({ value, onChange }: ITodoUser) {
   return (
-    <li className="relative">
-      <select
-        className="w-40 h-8 mr-4 font-bold text-gray-600 border-2 rounded hover:border-gray-400 focus:outline-none"
+    <FormControl sx={{ m: 0, minWidth: 250 }} size="small">
+      <InputLabel sx={{ display: "none" }}>Assignee</InputLabel>{" "}
+      <Select
         value={value}
         onChange={onChange}
+        multiple
+        renderValue={(selected) =>
+          (selected as string[]).length === 0 ? (
+            <em>Select Assignee</em>
+          ) : (
+            (selected as string[]).join(", ")
+          )
+        }
+        displayEmpty
+        inputProps={{ "aria-label": "Without label" }}
       >
-        <option value="none">None</option>
-        <option value="emma">Emma</option>
-        <option value="michael">Michael</option>
-        <option value="olivia">Olivia</option>
-        <option value="ethan">Ethan</option>
-      </select>
-    </li>
+        <MenuItem value="" disabled>
+          Select Assignee
+        </MenuItem>{" "}
+        {names.map((name) => (
+          <MenuItem key={name} value={name}>
+            {name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }
 

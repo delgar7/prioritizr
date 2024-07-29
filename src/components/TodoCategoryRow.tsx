@@ -11,7 +11,7 @@ interface ITodo {
   title: string;
   status: string;
   priority: string;
-  user: string;
+  user: string[];
 }
 
 const priorityOrder = ["urgent", "high", "medium", "low", "none"];
@@ -62,7 +62,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
     );
   };
 
-  const handleUserChange = (id: number, newUser: string) => {
+  const handleUserChange = (id: number, newUser: string[]) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, user: newUser } : todo
@@ -88,7 +88,7 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             title: "",
             status: category,
             priority: "none",
-            user: "none",
+            user: [],
           };
           setTodos((prevTodos) => [...prevTodos, newTodo]);
           setNextId((prevId) => prevId + 1);

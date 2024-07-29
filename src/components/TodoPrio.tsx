@@ -1,21 +1,25 @@
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
+import { SelectChangeEvent } from "@mui/material/Select";
+
 interface ITodoPrios {
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
 }
 
 function TodoPrio({ value, onChange }: ITodoPrios) {
   return (
-    <select
-      className="w-40 h-8 mr-4 font-bold text-gray-600 border-2 rounded hover:border-gray-400 focus:outline-none"
-      value={value}
-      onChange={onChange}
-    >
-      <option value="urgent">🔥 Urgent</option>
-      <option value="high">🟥 High</option>
-      <option value="medium">🟧 Medium</option>
-      <option value="low">🟨 Low</option>
-      <option value="none">⬜️ None</option>
-    </select>
+    <FormControl sx={{ m: 0, minWidth: 130 }} size="small">
+      <Select value={value} onChange={onChange}>
+        <MenuItem value="urgent">🔥 Urgent</MenuItem>
+        <MenuItem value="high">🟥 High</MenuItem>
+        <MenuItem value="medium">🟧 Medium</MenuItem>
+        <MenuItem value="low">🟨 Low</MenuItem>
+        <MenuItem value="none">⬜️ None</MenuItem>
+      </Select>
+    </FormControl>
   );
 }
 
