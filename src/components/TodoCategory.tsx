@@ -11,7 +11,7 @@ interface TodoCategoryProps {
 function TodoCategory({ value, onChange }: TodoCategoryProps) {
   return (
     <FormControl sx={{ m: 0, minWidth: 120 }} size="small">
-      <Select value={value} onChange={onChange}>
+      <Select className="dark:text-slate-300" value={value} onChange={onChange}>
         <MenuItem value="Todo">📥 Todo</MenuItem>
         <MenuItem value="In Progress">🏃 In Progress</MenuItem>
         <MenuItem value="In Review">🙇 In Review</MenuItem>

@@ -15,6 +15,7 @@ function TodoUser({ value, onChange }: ITodoUser) {
     <FormControl sx={{ m: 0, minWidth: 250 }} size="small">
       <InputLabel sx={{ display: "none" }}>Assignee</InputLabel>{" "}
       <Select
+        className="dark:text-slate-300"
         value={value}
         onChange={onChange}
         multiple

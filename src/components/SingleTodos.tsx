@@ -60,12 +60,20 @@ function SingleTodo({
       <TextField
         label="Title"
         inputRef={focusRef}
-        className="todo-title font-medium cursor-pointer dark:text-gray-400"
+        className="todo-title font-medium cursor-pointer"
         value={editTitle}
         onBlur={handleTitleChange}
         onChange={(event) => setEditTitle(event.target.value)}
         defaultValue="Small"
         size="small"
+        InputLabelProps={{
+          className: "dark:text-slate-500",
+        }}
+        InputProps={{
+          classes: {
+            input: "dark:text-slate-300",
+          },
+        }}
       />
 
       <div className="ml-auto">

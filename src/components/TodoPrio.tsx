@@ -12,7 +12,7 @@ interface ITodoPrios {
 function TodoPrio({ value, onChange }: ITodoPrios) {
   return (
     <FormControl sx={{ m: 0, minWidth: 130 }} size="small">
-      <Select value={value} onChange={onChange}>
+      <Select className="dark:text-slate-300" value={value} onChange={onChange}>
         <MenuItem value="urgent">🔥 Urgent</MenuItem>
         <MenuItem value="high">🟥 High</MenuItem>
         <MenuItem value="medium">🟧 Medium</MenuItem>
