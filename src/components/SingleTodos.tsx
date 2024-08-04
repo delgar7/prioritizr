@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useFocus from "../hooks/useFocus";
 import TodoPrio from "./TodoPrio";
 import TodoUser from "./TodoUser";
 import TodoCategory from "./TodoCategory";
@@ -30,7 +29,6 @@ function SingleTodo({
   onUserChange,
 }: ISingleTodoProps) {
   const [editTitle, setEditTitle] = useState(title);
-  const focusRef = useFocus();
 
   const handleTitleChange: React.FocusEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -53,16 +51,16 @@ function SingleTodo({
   };
 
   return (
-    <li className="relative flex gap-x-5 pt-3">
+    <li className="relative flex pt-3">
       <TodoCategory onChange={handleStatusChange} value={status} />
       <TodoPrio onChange={handlePriorityChange} value={priority} />
 
       <TextField
         label="Title"
-        inputRef={focusRef}
         className="todo-title font-medium cursor-pointer"
         value={editTitle}
         onBlur={handleTitleChange}
+        autoFocus
         onChange={(event) => setEditTitle(event.target.value)}
         defaultValue="Small"
         size="small"

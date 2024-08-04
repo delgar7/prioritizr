@@ -2,3 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
+  .emoji-select .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+
+  .emoji-select .MuiSelect-icon {
+    display: none;
+  }
+
+.MuiSelect-select span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .emoji {
+    font-size: 1.25rem;
+  }
