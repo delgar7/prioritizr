@@ -96,15 +96,12 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
 
         return (
           <div key={category} className="category--item">
-            <h2 className="p-3 text-2xl font-bold bg-slate-300 dark:bg-slate-800 dark:text-gray-400">
-              {category}
-            </h2>
-            <button
-              className="py-0.5 px-2 border border-gray-400 border-3 rounded bg-gray-200"
-              onClick={handleAddTodo}
-            >
-              +
-            </button>
+            <div className="flex items-center px-2 justify-between w-full bg-slate-300 dark:bg-slate-800 dark:text-gray-400">
+              <h2 className="p-3 text-2xl font-bold">{category}</h2>
+              <button className="py-0.5 px-2" onClick={handleAddTodo}>
+                +
+              </button>
+            </div>
 
             <ul ref={listRef}>
               {sortTodosByPriority(

@@ -8,7 +8,7 @@ interface ITodoUser {
   onChange: (event: SelectChangeEvent<string[]>) => void;
 }
 
-const names = ["None", "Emma", "Michael", "Olivea", "Omar"];
+const names = ["Emma", "Michael", "Olivea", "Omar"];
 
 function TodoUser({ value, onChange }: ITodoUser) {
   return (
@@ -21,7 +21,7 @@ function TodoUser({ value, onChange }: ITodoUser) {
         multiple
         renderValue={(selected) =>
           (selected as string[]).length === 0 ? (
-            <em>Select Assignee</em>
+            <em>None</em>
           ) : (
             (selected as string[]).join(", ")
           )
