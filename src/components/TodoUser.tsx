@@ -2,18 +2,19 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useUsers } from "../context/UsersContext";
 
 interface ITodoUser {
   value: string[];
   onChange: (event: SelectChangeEvent<string[]>) => void;
 }
 
-const names = ["Emma", "Michael", "Olivea", "Omar"];
-
 function TodoUser({ value, onChange }: ITodoUser) {
+  const { users } = useUsers();
+
   return (
     <FormControl sx={{ m: 0, minWidth: 250 }} size="small">
-      <InputLabel sx={{ display: "none" }}>Assignee</InputLabel>{" "}
+      <InputLabel sx={{ display: "none" }}>Assignee</InputLabel>
       <Select
         className="dark:text-slate-300"
         value={value}
@@ -31,8 +32,8 @@ function TodoUser({ value, onChange }: ITodoUser) {
       >
         <MenuItem value="" disabled>
           Select Assignee
-        </MenuItem>{" "}
-        {names.map((name) => (
+        </MenuItem>
+        {users.map((name) => (
           <MenuItem key={name} value={name}>
             {name}
           </MenuItem>
