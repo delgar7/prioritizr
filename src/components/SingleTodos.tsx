@@ -62,7 +62,6 @@ function SingleTodo({
         onBlur={handleTitleChange}
         autoFocus
         onChange={(event) => setEditTitle(event.target.value)}
-        defaultValue="Small"
         size="small"
         InputLabelProps={{
           className: "dark:text-slate-500",
