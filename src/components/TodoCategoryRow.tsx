@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import SingleTodo from "./SingleTodos";
 import useAutoAnimateList from "../hooks/useAutoAnimateList";
 
@@ -37,47 +37,47 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  // Handle functions [START]
-  const handleStatusChange = (id: number, newStatus: string) => {
+  // Event handlers [START]
+  const handleStatusChange = useCallback((id: number, newStatus: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, status: newStatus } : todo
       )
     );
-  };
+  }, []);
 
-  const handleTitleChange = (id: number, newTitle: string) => {
+  const handleTitleChange = useCallback((id: number, newTitle: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, title: newTitle } : todo
       )
     );
-  };
+  }, []);
 
-  const handlePriorityChange = (id: number, newPriority: string) => {
+  const handlePriorityChange = useCallback((id: number, newPriority: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, priority: newPriority } : todo
       )
     );
-  };
+  }, []);
 
-  const handleUserChange = (id: number, newUser: string[]) => {
+  const handleUserChange = useCallback((id: number, newUser: string[]) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, user: newUser } : todo
       )
     );
-  };
+  }, []);
   // Handle functions [END]
 
-  const sortTodosByPriority = (todos: ITodo[]) => {
-    return todos.sort((a, b) => {
+  const sortedTodos = useMemo(() => {
+    return todos.sort((a: ITodo, b: ITodo) => {
       return (
         priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority)
       );
     });
-  };
+  }, [todos]);
 
   return (
     <div className="flex flex-col pt-5 gap-y-5">
@@ -104,9 +104,8 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             </div>
 
             <ul ref={listRef}>
-              {sortTodosByPriority(
-                todos.filter((todo) => todo.status === category)
-              ).map((todo) => (
+              {sortedTodos.filter((todo) => todo.status === category)
+              .map((todo) => (
                 <SingleTodo
                   key={todo.id}
                   index={todo.id}
