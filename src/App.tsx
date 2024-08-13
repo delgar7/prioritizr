@@ -1,6 +1,4 @@
-// import Header from "./components/Header";
-// import TodoCategoryRow from "./components/TodoCategoryRow";
-// import Footer from "./components/Footer";
+
 import { useTheme } from "./context/DarkModeContext";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

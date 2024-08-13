@@ -17,14 +17,14 @@ function TodoUser({ value, onChange }: ITodoUser) {
       <InputLabel sx={{ display: "none" }}>Assignee</InputLabel>
       <Select
         className="dark:text-slate-300"
-        value={value}
+        value={Array.isArray(value) ? value : []}
         onChange={onChange}
         multiple
         renderValue={(selected) =>
-          (selected as string[]).length === 0 ? (
+          Array.isArray(selected) && (selected as string[]).length === 0 ? (
             <em>None</em>
           ) : (
-            (selected as string[]).join(", ")
+            Array.isArray(selected) ? (selected as string[]).join(", ") : ''
           )
         }
         displayEmpty
