@@ -1,21 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-  .emoji-select .MuiOutlinedInput-notchedOutline {
+body {
+    font-family: "Poppins", sans-serif;
+}
+.emoji-select .MuiOutlinedInput-notchedOutline {
     border: none;
-  }
+}
 
-  .emoji-select .MuiSelect-icon {
+.emoji-select .MuiSelect-icon {
     display: none;
-  }
+}
 
 .MuiSelect-select span {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
-  .emoji {
+.emoji {
     font-size: 1.25rem;
-  }
+}

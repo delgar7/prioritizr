@@ -2,24 +2,55 @@ import ThemeToggle from "./ThemeToggle";
 import { Link } from "react-router-dom";
 
 function Header() {
-  return (
-    <header className="p-3 bg-slate-300 dark:bg-slate-800">
-      <Link to="/">
-        <h1 className="text-4xl font-bold dark:text-gray-400 font-mono pb-5">
-          Todo App by Delgar7 👋≧◉ᴥ◉≦
-        </h1>
-      </Link>
-      <nav className="flex pt-3">
-        <ThemeToggle />
-        <Link
-          to="/users"
-          className="text-slate-800 dark:text-slate-300 border-2 p-2 rounded mx-5 hover:bg-slate-200 dark:hover:bg-slate-700"
-        >
-          Users
-        </Link>
-      </nav>
-    </header>
-  );
+    return (
+        <nav className="bg-white border-b-2 border-[#E4E4E7] dark:bg-gray-900">
+            <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
+                <Link to="/">
+                    <h1 className="font-mono font-semibold text-1xl dark:text-gray-400">
+                        Todo App by Delgar7 👋🏻
+                    </h1>
+                </Link>
+                <button
+                    data-collapse-toggle="navbar-default"
+                    type="button"
+                    className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="navbar-default"
+                    aria-expanded="false"
+                >
+                    <span className="sr-only">Open main menu</span>
+                    <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 17 14"
+                    >
+                        <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15"
+                        />
+                    </svg>
+                </button>
+                <div
+                    className="hidden w-full md:block md:w-auto"
+                    id="navbar-default"
+                >
+                    <ul className="flex flex-col items-center p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <Link
+                            to="/users"
+                            className="px-4 py-2 transition-colors duration-300 rounded-md text-slate-800 hover:bg-gray-200 dark:text-slate-300 hover:text-slate-500 dark:hover:bg-slate-700"
+                        >
+                            Users
+                        </Link>
+                        <ThemeToggle />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    );
 }
 
 export default Header;

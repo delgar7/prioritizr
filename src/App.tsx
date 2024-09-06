@@ -1,4 +1,3 @@
-
 import { useTheme } from "./context/DarkModeContext";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -10,7 +9,9 @@ function App() {
 
     return (
         <div
-            className={`p-5 ${darkMode ? "dark bg-slate-700" : "bg-slate-200"}`}
+            className={`pt-0 pr-5 pb-5 pl-5 ${
+                darkMode ? "dark bg-slate-700" : "bg-white"
+            }`}
         >
             <Routes>
                 <Route path="/" element={<Home />} />

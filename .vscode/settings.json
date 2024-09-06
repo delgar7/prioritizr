@@ -1,4 +1,10 @@
 {
     "prettier.tabWidth": 4,
-    "prettier.requirePragma": true
+    "prettier.requirePragma": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "gitlens.defaultDateFormat": ""
 }
