@@ -1,10 +1,6 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useEffect } from "react";
 import SingleTodo from "./SingleTodos";
 import useAutoAnimateList from "../hooks/useAutoAnimateList";
-
-interface TodoCategoryRowProps {
-    categories: string[];
-}
 
 interface ITodo {
     id: number;
@@ -14,45 +10,49 @@ interface ITodo {
     user: string[];
 }
 
+interface IStatusCounts {
+    [key: string]: number;
+}
+
+interface TodoCategoryRowProps {
+    categories: string[];
+    todos: ITodo[];
+    setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
+    onStatusCountsChange: (counts: IStatusCounts) => void;
+}
+
 const priorityOrder = ["urgent", "high", "medium", "low", "none"];
 
-function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
-    // Fetching the data from localStorage, using getItem
-    const storedTodos = localStorage.getItem("todos");
-    const initialTodos = storedTodos ? JSON.parse(storedTodos) : [];
-
-    // Calculate initial nextId based on the existing todos, to prevent duplicate IDs
-    const initialNextId =
-        initialTodos.length > 0
-            ? Math.max(...initialTodos.map((todo: ITodo) => todo.id)) + 1
-            : 1;
-
-    // Hooks
-    const [todos, setTodos] = useState<ITodo[]>(initialTodos);
-    const [nextId, setNextId] = useState(initialNextId);
+const TodoCategoryRow: React.FC<TodoCategoryRowProps> = ({
+    categories,
+    todos,
+    setTodos,
+    onStatusCountsChange,
+}) => {
     const listRef = useAutoAnimateList();
 
-    // Saving the data of the Todos, using setItem (localStorage)
-    useEffect(() => {
-        localStorage.setItem("todos", JSON.stringify(todos));
-    }, [todos]);
-
     // Event handlers [START]
-    const handleStatusChange = useCallback((id: number, newStatus: string) => {
-        setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-                todo.id === id ? { ...todo, status: newStatus } : todo
-            )
-        );
-    }, []);
+    const handleStatusChange = useCallback(
+        (id: number, newStatus: string) => {
+            setTodos((prevTodos) =>
+                prevTodos.map((todo) =>
+                    todo.id === id ? { ...todo, status: newStatus } : todo
+                )
+            );
+        },
+        [setTodos]
+    );
 
-    const handleTitleChange = useCallback((id: number, newTitle: string) => {
-        setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-                todo.id === id ? { ...todo, title: newTitle } : todo
-            )
-        );
-    }, []);
+    const handleTitleChange = useCallback(
+        (id: number, newTitle: string) => {
+            setTodos((prevTodos) =>
+                prevTodos.map((todo) =>
+                    todo.id === id ? { ...todo, title: newTitle } : todo
+                )
+            );
+        },
+        [setTodos]
+    );
 
     const handlePriorityChange = useCallback(
         (id: number, newPriority: string) => {
@@ -62,20 +62,23 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
                 )
             );
         },
-        []
+        [setTodos]
     );
 
-    const handleUserChange = useCallback((id: number, newUser: string[]) => {
-        setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-                todo.id === id ? { ...todo, user: newUser } : todo
-            )
-        );
-    }, []);
-    // Handle functions [END]
+    const handleUserChange = useCallback(
+        (id: number, newUser: string[]) => {
+            setTodos((prevTodos) =>
+                prevTodos.map((todo) =>
+                    todo.id === id ? { ...todo, user: newUser } : todo
+                )
+            );
+        },
+        [setTodos]
+    );
+    // Event handlers [END]
 
     const sortedTodos = useMemo(() => {
-        return todos.sort((a: ITodo, b: ITodo) => {
+        return todos.sort((a, b) => {
             return (
                 priorityOrder.indexOf(a.priority) -
                 priorityOrder.indexOf(b.priority)
@@ -83,19 +86,42 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
         });
     }, [todos]);
 
+    // Calculate counts of todos by status
+    const calculateStatusCounts = useCallback(() => {
+        const counts: IStatusCounts = {
+            "In Review": 0,
+            "In Progress": 0,
+            Todo: 0,
+            Done: 0,
+            Canceled: 0,
+        };
+        todos.forEach((todo) => {
+            if (counts[todo.status] !== undefined) {
+                counts[todo.status]++;
+            }
+        });
+        onStatusCountsChange(counts);
+    }, [todos, onStatusCountsChange]);
+
+    useEffect(() => {
+        calculateStatusCounts();
+    }, [todos, calculateStatusCounts]);
+
     return (
         <div className="flex flex-col pt-5 gap-y-5">
             {categories.map((category) => {
                 const handleAddTodo = () => {
-                    const newTodo = {
-                        id: nextId,
+                    const newTodo: ITodo = {
+                        id:
+                            todos.length > 0
+                                ? Math.max(...todos.map((todo) => todo.id)) + 1
+                                : 1,
                         title: "",
                         status: category,
                         priority: "none",
                         user: [],
                     };
                     setTodos((prevTodos) => [...prevTodos, newTodo]);
-                    setNextId((prevId) => prevId + 1);
                 };
 
                 return (
@@ -135,6 +161,6 @@ function TodoCategoryRow({ categories }: TodoCategoryRowProps) {
             })}
         </div>
     );
-}
+};
 
 export default TodoCategoryRow;
