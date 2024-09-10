@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import TodoCategoryRow from "../components/TodoCategoryRow";
+import WelcomeSection from "../components/WelcomeSection";
 import { categoryEmojis } from "../components/TodoCategory";
 
 const categories: string[] = [
@@ -48,8 +49,9 @@ function Home() {
     return (
         <>
             <Header />
+            <WelcomeSection />
 
-            <div className="grid grid-cols-1 gap-10 p-8 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 p-8 pt-0 md:grid-cols-3">
                 {/* Left side of the page - 70% */}
                 <div className="md:col-span-2">
                     <TodoCategoryRow

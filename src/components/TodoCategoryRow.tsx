@@ -108,7 +108,7 @@ const TodoCategoryRow: React.FC<TodoCategoryRowProps> = ({
     }, [todos, calculateStatusCounts]);
 
     return (
-        <div className="flex flex-col pt-5 gap-y-5">
+        <div className="flex flex-col gap-y-5">
             {categories.map((category) => {
                 const handleAddTodo = () => {
                     const newTodo: ITodo = {
