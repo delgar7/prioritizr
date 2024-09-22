@@ -19,11 +19,11 @@ function WelcomeSection() {
     }
 
     return (
-        <div className="p-8 welcome-section">
+        <div className="p-8 mb-5 welcome-section">
             <h1 className="mb-2 text-4xl font-semibold font-inter">
                 {greeting}
             </h1>
-            <span className="text-sm font-light ">{`It's ${currentDate}`}</span>
+            <span className="font-light text-md ">{`It's ${currentDate}`}</span>
         </div>
     );
 }

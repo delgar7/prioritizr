@@ -86,26 +86,26 @@ const TodoCategoryRow: React.FC<TodoCategoryRowProps> = ({
         });
     }, [todos]);
 
-    // Calculate counts of todos by status
-    const calculateStatusCounts = useCallback(() => {
-        const counts: IStatusCounts = {
-            "In Review": 0,
-            "In Progress": 0,
-            Todo: 0,
-            Done: 0,
-            Canceled: 0,
-        };
-        todos.forEach((todo) => {
-            if (counts[todo.status] !== undefined) {
-                counts[todo.status]++;
-            }
-        });
-        onStatusCountsChange(counts);
-    }, [todos, onStatusCountsChange]);
+    // --- BUG / Infinite loop see console ---
+    // const calculateStatusCounts = useCallback(() => {
+    //     const counts: IStatusCounts = {
+    //         "In Review": 0,
+    //         "In Progress": 0,
+    //         Todo: 0,
+    //         Done: 0,
+    //         Canceled: 0,
+    //     };
+    //     todos.forEach((todo) => {
+    //         if (counts[todo.status] !== undefined) {
+    //             counts[todo.status]++;
+    //         }
+    //     });
+    //     onStatusCountsChange(counts);
+    // }, [todos, onStatusCountsChange]);
 
-    useEffect(() => {
-        calculateStatusCounts();
-    }, [todos, calculateStatusCounts]);
+    // useEffect(() => {
+    //     calculateStatusCounts();
+    // }, [todos, calculateStatusCounts]);
 
     return (
         <div className="flex flex-col gap-y-5">
