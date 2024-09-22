@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
     return (
-        <nav className="bg-white border-b-2 mb-3 border-[#E4E4E7] dark:bg-gray-900">
+        <nav className="bg-white border-b-2 mb-8 border-[#E4E4E7] dark:bg-gray-900">
             <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
                 <Link to="/">
                     <h1 className="font-mono font-semibold text-1xl dark:text-gray-400">
