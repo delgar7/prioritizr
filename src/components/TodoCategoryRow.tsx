@@ -1,8 +1,9 @@
 import React, { useMemo, useCallback, useEffect } from "react";
 import SingleTodo from "./SingleTodos";
 import useAutoAnimateList from "../hooks/useAutoAnimateList";
+import { handleAddTodo } from "../utils/todoUtils.js";
 
-interface ITodo {
+export interface ITodo {
     id: number;
     title: string;
     status: string;
@@ -86,7 +87,7 @@ const TodoCategoryRow: React.FC<TodoCategoryRowProps> = ({
         });
     }, [todos]);
 
-    // --- BUG / Infinite loop see console ---
+    // - 🪰 BUG (Infinite loop => see console) -
     // const calculateStatusCounts = useCallback(() => {
     //     const counts: IStatusCounts = {
     //         "In Review": 0,
@@ -106,23 +107,13 @@ const TodoCategoryRow: React.FC<TodoCategoryRowProps> = ({
     // useEffect(() => {
     //     calculateStatusCounts();
     // }, [todos, calculateStatusCounts]);
+    // - 🪰 BUG END (Infinite loop => see console) -
 
     return (
         <div className="flex flex-col gap-y-5">
             {categories.map((category) => {
-                const handleAddTodo = () => {
-                    const newTodo: ITodo = {
-                        id:
-                            todos.length > 0
-                                ? Math.max(...todos.map((todo) => todo.id)) + 1
-                                : 1,
-                        title: "",
-                        status: category,
-                        priority: "none",
-                        user: [],
-                    };
-                    setTodos((prevTodos) => [...prevTodos, newTodo]);
-                };
+                const handleAdd = () =>
+                    handleAddTodo(todos, setTodos, category);
 
                 return (
                     <div key={category} className="category--item">
@@ -130,10 +121,7 @@ const TodoCategoryRow: React.FC<TodoCategoryRowProps> = ({
                             <h2 className="text-lg font-light text-gray-700">
                                 {category}
                             </h2>
-                            <button
-                                className="py-0.5 px-2"
-                                onClick={handleAddTodo}
-                            >
+                            <button className="py-0.5 px-2" onClick={handleAdd}>
                                 +
                             </button>
                         </div>
