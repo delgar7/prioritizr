@@ -55,7 +55,7 @@ function Home() {
             <div className="grid grid-cols-1 gap-8 p-8 pt-0 md:grid-cols-3">
                 {/* Left side of the page - 70% */}
                 <div className="flex flex-col space-y-10 md:col-span-2">
-                    <NewTask />
+                    <NewTask todos={todos} setTodos={setTodos} />
                     <TodoCategoryRow
                         categories={categories}
                         todos={todos}
