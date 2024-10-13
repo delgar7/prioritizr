@@ -13,13 +13,27 @@ function TodoUser({ value, onChange }: ITodoUser) {
     const { users } = useUsers();
 
     return (
-        <FormControl sx={{ m: 0, minWidth: 250 }} size="small">
+        <FormControl sx={{ m: 0, minWidth: 100 }} size="small">
             <InputLabel sx={{ display: "none" }}>Assignee</InputLabel>
             <Select
                 className="dark:text-slate-300"
                 value={Array.isArray(value) ? value : []}
                 onChange={onChange}
                 multiple
+                sx={{
+                    width: {
+                        xl: 300,
+                        lg: 240,
+                        sm: 120,
+                        xs: 100,
+                    },
+                    "@media (max-width: 1270px)": {
+                        width: 210,
+                    },
+                    "@media (max-width: 1180px)": {
+                        width: 180,
+                    },
+                }}
                 renderValue={(selected) =>
                     Array.isArray(selected) &&
                     (selected as string[]).length === 0 ? (
