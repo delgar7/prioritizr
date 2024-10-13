@@ -64,18 +64,18 @@ function Home() {
                     />
                 </div>
                 {/* Right Side - Takes up 30% on medium screens and above */}
-                <div className="p-5 rounded-lg bg-primary max-h-[425px] overflow-hidden">
-                    <h2 className="flex items-center justify-between pb-5">
-                        <span className="font-semibold text-gray-700">
+                <div className="p-5 rounded-lg bg-primary max-h-[540px] overflow-hidden">
+                    <h2 className="flex items-center justify-between pb-10">
+                        <span className="text-lg font-semibold text-gray-700">
                             Task Progress
                         </span>
-                        <span className="text-lg">📶</span>
+                        <span className="text-xl">📶</span>
                     </h2>
                     <ul className="space-y-5">
                         {categories.map((category) => (
                             <li
                                 key={category}
-                                className="flex items-center justify-between p-3 bg-white rounded-md shadow-sm"
+                                className="flex items-center justify-between p-3 py-5 text-lg bg-white rounded-md shadow-sm"
                             >
                                 <span>
                                     {categoryEmojis[category]} {category}
