@@ -28,7 +28,7 @@ function TodoCategory({ value, onChange }: TodoCategoryProps) {
                 value={value}
                 onChange={onChange}
                 renderValue={(selected) => (
-                    <span className="emoji">
+                    <span className="px-1 py-2 transition-colors duration-200 border rounded-lg shadow-sm emoji bg-slate-50 border-slate-300 hover:bg-slate-200 focus:outline-none">
                         {categoryEmojis[selected as string]}
                     </span>
                 )}
