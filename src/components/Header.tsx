@@ -6,7 +6,7 @@ function Header() {
         <nav className="bg-white border-b-2 mb-8 border-[#E4E4E7] dark:bg-gray-900">
             <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
                 <Link to="/">
-                    <h1 className="font-mono font-semibold text-1xl dark:text-gray-400">
+                    <h1 className="font-mono text-xl font-semibold dark:text-gray-400">
                         Todo App by Delgar7 👋🏻
                     </h1>
                 </Link>
@@ -41,7 +41,7 @@ function Header() {
                     <ul className="flex flex-col items-center p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <Link
                             to="/users"
-                            className="px-4 py-2 transition-colors duration-300 rounded-md text-slate-800 hover:bg-gray-200 dark:text-slate-300 hover:text-slate-500 dark:hover:bg-slate-700"
+                            className="px-4 py-2 font-mono text-lg transition-colors duration-300 rounded-md text-slate-800 hover:bg-gray-200 dark:text-slate-300 hover:text-slate-500 dark:hover:bg-slate-700"
                         >
                             Users
                         </Link>
