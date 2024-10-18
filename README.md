@@ -11,4 +11,4 @@ A simple Task app built with React, TypeScript, and Tailwind CSS. It serves as a
 -   Track tasks with different statuses
 -   Filter tasks by priority
 -   Dark mode
--   & more to come..
+-   And more to come..
