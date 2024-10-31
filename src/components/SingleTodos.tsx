@@ -30,8 +30,9 @@ function SingleTodo({
     onUserChange,
 }: ISingleTodoProps) {
     const [editTitle, setEditTitle] = useState(title);
+    const [isTitleEmpty, setIsTitleEmpty] = useState(false);
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if screen is mobile
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     const handleTitleChange: React.FocusEventHandler<
         HTMLInputElement | HTMLTextAreaElement
@@ -39,6 +40,7 @@ function SingleTodo({
         const newTitle = event.target.value || "";
         setEditTitle(newTitle);
         onTitleChange(index, newTitle);
+        setIsTitleEmpty(newTitle.trim() === "");
     };
 
     const handleStatusChange = (event: SelectChangeEvent<string>) => {
@@ -90,6 +92,7 @@ function SingleTodo({
                         input: "dark:text-slate-300",
                     },
                 }}
+                error={isTitleEmpty}
             />
 
             {/* Conditional Divider - Vertical for desktop, Horizontal for mobile */}
