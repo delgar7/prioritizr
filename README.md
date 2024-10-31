@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A simple TODO app built with React, TypeScript, and Tailwind CSS. It serves as a learning project to experiment with different React hooks, TypeScript, React Router, and Tailwind CSS.
+A simple Task app built with React, TypeScript, and Tailwind CSS. It serves as a learning project to experiment with different React hooks, TypeScript, React Router, and Tailwind CSS.
 
 ## Features
 
@@ -11,4 +11,4 @@ A simple TODO app built with React, TypeScript, and Tailwind CSS. It serves as a
 -   Track tasks with different statuses
 -   Filter tasks by priority
 -   Dark mode
--   & more to come..
+-   And more to come..
