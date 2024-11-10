@@ -117,8 +117,8 @@ const TodoCategoryRow: React.FC<TodoCategoryRowProps> = ({
 
                 return (
                     <div key={category} className="category--item">
-                        <div className="flex items-center justify-between w-full px-2 py-3 mb-5 bg-primary dark:bg-slate-800 dark:text-gray-400">
-                            <h2 className="pl-3 text-lg font-light text-gray-700">
+                        <div className="flex items-center justify-between w-full px-2 py-3 mb-5 bg-primary dark:bg-darkHeading dark:text-darkText">
+                            <h2 className="pl-3 text-lg font-light text-gray-700 dark:text-darkText">
                                 {category}
                             </h2>
                             <button className="py-0.5 px-2" onClick={handleAdd}>

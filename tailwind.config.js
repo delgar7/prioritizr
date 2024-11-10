@@ -6,6 +6,11 @@ module.exports = {
             backgroundColor: {
                 primary: "#F9F9F9",
             },
+            colors: {
+                darkBackground: "#202937",
+                darkHeading: "#384252",
+                darkText: "#E6E7EB",
+            },
             fontFamily: {
                 inter: ["Inter", "sans-serif"],
             },

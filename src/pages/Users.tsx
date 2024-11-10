@@ -15,10 +15,12 @@ const Users: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="min-h-screen">
             <Header />
             <div className="flex items-center justify-between w-full px-2 mt-5 bg-primary dark:bg-slate-800 dark:text-gray-400">
-                <h2 className="p-3 text-lg font-light text-gray-700">Users</h2>
+                <h2 className="p-3 text-lg font-light text-gray-700 dark:text-darkText">
+                    Users
+                </h2>
                 <TextField
                     label="User"
                     className="font-medium cursor-pointer"
@@ -39,13 +41,13 @@ const Users: React.FC = () => {
                 </button>
             </div>
             <div>
-                <h3 className="p-3 mt-4 text-lg text-gray-700 dark:text-slate-300">
+                <h3 className="p-3 mt-4 text-lg text-gray-700 dark:text-darkText">
                     Current users:
                 </h3>
                 <ul>
                     {users.map((user) => (
                         <li
-                            className="p-3 text-lg font-light text-gray-700 dark:text-slate-300"
+                            className="p-3 text-lg font-light text-gray-700 dark:text-darkText"
                             key={user}
                         >
                             {user}

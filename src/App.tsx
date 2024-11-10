@@ -10,7 +10,7 @@ function App() {
     return (
         <div
             className={`pt-0 pr-5 pb-5 pl-5 ${
-                darkMode ? "dark bg-slate-700" : "bg-white"
+                darkMode ? "dark bg-darkBackground" : "bg-white"
             }`}
         >
             <Routes>

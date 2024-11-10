@@ -22,12 +22,19 @@ function TodoPrio({ value, onChange }: ITodoPrios) {
     return (
         <FormControl sx={{ m: 0, minWidth: 100 }} size="small">
             <Select
+                MenuProps={{
+                    sx: {
+                        "&& .MuiList-root": {
+                            backgroundColor: "bg-slate-50",
+                        },
+                    },
+                }}
                 className="emoji-select"
                 value={value}
                 onChange={onChange}
                 renderValue={(selected) => {
                     return (
-                        <span className="px-1 py-2 transition-colors duration-200 border rounded-lg shadow-sm bg-slate-50 border-slate-300 hover:bg-slate-200 focus:outline-none">
+                        <span className="px-1 py-2 transition-colors duration-200 border rounded-lg shadow-sm dark:bg-darkBackground bg-slate-50 border-slate-300 hover:bg-slate-200 focus:outline-none dark:hover:bg-slate-600">
                             {prioEmojis[selected as string]}
                         </span>
                     );

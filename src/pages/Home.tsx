@@ -52,7 +52,7 @@ function Home() {
             <Header />
             <WelcomeSection />
 
-            <div className="grid grid-cols-1 gap-8 p-8 pt-0 md:grid-cols-3">
+            <div className="grid min-h-screen grid-cols-1 gap-8 p-8 pt-0 md:grid-cols-3">
                 {/* Left side of the page - 70% */}
                 <div className="flex flex-col space-y-10 md:col-span-2">
                     <NewTask todos={todos} setTodos={setTodos} />
@@ -64,9 +64,9 @@ function Home() {
                     />
                 </div>
                 {/* Right Side - Takes up 30% on medium screens and above */}
-                <div className="p-5 rounded-lg bg-primary max-h-[540px] overflow-hidden">
+                <div className="p-5 rounded-lg bg-primary max-h-[540px] overflow-hidden dark:bg-darkHeading">
                     <h2 className="flex items-center justify-between pb-10">
-                        <span className="text-lg font-semibold text-gray-700">
+                        <span className="text-lg font-semibold text-gray-700 dark:text-darkText">
                             Task Progress
                         </span>
                         <span className="text-xl">📶</span>
@@ -75,7 +75,7 @@ function Home() {
                         {categories.map((category) => (
                             <li
                                 key={category}
-                                className="flex items-center justify-between p-3 py-5 text-lg bg-white rounded-md shadow-sm"
+                                className="flex items-center justify-between p-3 py-5 text-lg bg-white rounded-md shadow-sm dark:text-darkText dark:bg-darkBackground"
                             >
                                 <span>
                                     {categoryEmojis[category]} {category}
