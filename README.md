@@ -7,8 +7,8 @@ A simple Task app built with React, TypeScript, and Tailwind CSS. It serves as a
 ## Features
 
 -   Add new tasks
--   Add and assign users to tasks
+-   Add and assign (multiple) users to tasks
 -   Track tasks with different statuses
 -   Filter tasks by priority
 -   Dark mode
--   And more to come..
+-   View task progress
